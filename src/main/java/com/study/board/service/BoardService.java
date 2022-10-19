@@ -5,6 +5,8 @@ import com.study.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardService {
 
@@ -16,4 +18,8 @@ public class BoardService {
         //이녀석이 자동으로 알아서해줌 레전드다..
     }
 
+    public List<Board> boardList(){
+        return boardRepository.findAll();
+        //보드라는 리스트에 녀석을 반환해줌!
+    }
 }

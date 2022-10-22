@@ -31,6 +31,11 @@ public class BoardController {
       //보드서비스안에 있는 보드 리스트라는 녀석을 리스트라는 이름을 가진애한테 옮기겠다!
       return "boardlist";
     }
-
+    @GetMapping("/board/view")
+    //localhost8080/board/view? id=()이부분이 아이디값으로 들어감
+    public String boardview(Model model,Integer id){
+      model.addAttribute("board",boardService.boardView(id));
+        return "BoardView";
+    }
 
 }

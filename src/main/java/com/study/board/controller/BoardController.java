@@ -23,9 +23,10 @@ public class BoardController {
   @PostMapping("/board/writedo")
   public String boardWritePro(Board board){
         boardService.write(board);
-        return "";
+        return "redirect:/board/list";
+        //이거는 바로 넘어갈떄가 아니고 어떤 기능을 구현하고 돌아갈떄 붙혀줘야됨
     }
-    @GetMapping("board/list")
+    @GetMapping("/board/list")
     public String boardList(Model model){
       model.addAttribute("list",boardService.boardList());
       //보드서비스안에 있는 보드 리스트라는 녀석을 리스트라는 이름을 가진애한테 옮기겠다!
@@ -37,5 +38,9 @@ public class BoardController {
       model.addAttribute("board",boardService.boardView(id));
         return "BoardView";
     }
-
+    @GetMapping("/board/delete")
+    public String delete(Integer id){
+      boardService.boardDelete(id);
+      return "redirect:/board/list";
+    }
 }

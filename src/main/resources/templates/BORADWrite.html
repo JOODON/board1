@@ -25,9 +25,11 @@
 <body>
 
     <div class="layout">
-        <form action="/board/writedo" method="post">
+        <form action="/board/writedo" method="post" enctype="multipart/form-data">
             <input name="title" type="text">
             <textarea name="content"></textarea>
+            <input type="file" name="file">
+            <!--네임값으로 매개변수를 받아줌-->
             <button type="submit">작성</button>
         </form>
     </div>

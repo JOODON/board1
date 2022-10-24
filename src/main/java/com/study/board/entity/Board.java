@@ -18,5 +18,8 @@ public class Board {
     private Integer id;
     private String title;
     private String content;
+    private String filename;
+    private String filepath;
+    //이거 JPA에서 인식하기떄문에 대문자말고 전부 소문자로 사용해주어야됨!
 
 }

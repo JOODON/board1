@@ -9,6 +9,7 @@
     <p th:text="${board.content}">내용이 들어갑니다</p>
     <a th:href="@{/board/delete/(id=${board.id})}">글 삭제</a>
     <a th:href="@{/board/modify/{id}(id=${board.id})}">글 수정</a>
+    <a th:href="@{${board.filepath}}">다운로드 받기</a>
     <!--@PathVariable("id") 를 붙히면 view/8 이렇게 숫자로 깔끔하게 떨어짐-->
 </body>
 </html>

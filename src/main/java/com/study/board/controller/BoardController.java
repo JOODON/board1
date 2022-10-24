@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 //컨트롤러라고 선언해주는 부분!
@@ -24,8 +25,8 @@ public class BoardController {
   }
 
   @PostMapping("/board/writedo")
-  public String boardWritePro(Board board,Model model) {
-    boardService.write(board);
+  public String boardWritePro(Board board, Model model,MultipartFile file) throws Exception {
+    boardService.write(board,file);
     //if문을 써서 한번 더 확인가능!
     model.addAttribute("message","글 작성이 완료 되었습니다");
 
@@ -65,14 +66,15 @@ public class BoardController {
   }
 
   @PostMapping("/board/update/{id}")
-  public String boardupdate(@PathVariable("id") Integer id,Board board,Model model) {
+  public String boardupdate(@PathVariable("id") Integer id,Board board,Model model,MultipartFile file) throws Exception{
+
     Board boardTemp=boardService.boardView(id);
 
     boardTemp.setTitle(board.getTitle());
 
     boardTemp.setContent(board.getContent());
 
-    boardService.write(boardTemp);
+    boardService.write(boardTemp,file);
 
     model.addAttribute("message","글 수정이 완료 되었습니다");
 

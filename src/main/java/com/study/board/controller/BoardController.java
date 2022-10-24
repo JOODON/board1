@@ -3,6 +3,10 @@ package com.study.board.controller;
 import com.study.board.entity.Board;
 import com.study.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +41,19 @@ public class BoardController {
   }
 
   @GetMapping("/board/list")
-  public String boardList(Model model) {
-    model.addAttribute("list", boardService.boardList());
+  public String boardList(Model model,@PageableDefault(page = 0, size = 10 , sort ="id" ,direction =Sort.Direction.DESC) Pageable pageable) {
+
+    Page<Board> list = boardService.boardList(pageable);
+    int nowPage=list.getPageable().getPageNumber()+1;
+
+    int stratPage=Math.max(nowPage -4 ,1);
+
+    int endPage=Math.min(nowPage +5,list.getTotalPages());
+
+    model.addAttribute("list",list);
+    model.addAttribute("nowPage",nowPage);
+    model.addAttribute("startPage",stratPage);
+    model.addAttribute("endPage",endPage);
     //보드서비스안에 있는 보드 리스트라는 녀석을 리스트라는 이름을 가진애한테 옮기겠다!
     return "boardlist";
   }

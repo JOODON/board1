@@ -3,6 +3,8 @@ package com.study.board.service;
 import com.study.board.entity.Board;
 import com.study.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,8 +43,9 @@ public class BoardService {
         //이녀석이 자동으로 알아서해줌 레전드다..
     }
     //게시글 페이지
-    public List<Board> boardList(){
-        return boardRepository.findAll();
+    public Page<Board> boardList(Pageable pageable){
+        return boardRepository.findAll(pageable);
+
         //보드라는 리스트에 녀석을 반환해줌!
     }
 

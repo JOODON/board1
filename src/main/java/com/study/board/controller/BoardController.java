@@ -1,7 +1,10 @@
 package com.study.board.controller;
 
 import com.study.board.entity.Board;
+import com.study.board.entity.Member;
+import com.study.board.repository.MemberRepository;
 import com.study.board.service.BoardService;
+import com.study.board.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,15 +13,20 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 //컨트롤러라고 선언해주는 부분!
 public class BoardController {
   @Autowired
   private BoardService boardService;
+  @Autowired
+  private MemberService memberService;
 
   //생성자 주입 객체 (이 객체를 가져다가 쓴다라고 하면댐)
   @GetMapping("/board/write")
@@ -102,4 +110,5 @@ public class BoardController {
 
     return "loginPage";
   }
+
 }

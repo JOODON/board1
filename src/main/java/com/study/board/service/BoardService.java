@@ -45,12 +45,12 @@ public class BoardService {
     //게시글 페이지
     public Page<Board> boardList(Pageable pageable){
         return boardRepository.findAll(pageable);
-
         //보드라는 리스트에 녀석을 반환해줌!
     }
 
     //특정 게시글 불러오기
     public Board boardView(Integer id){
+
         return boardRepository.findById(id).get();
     }
 

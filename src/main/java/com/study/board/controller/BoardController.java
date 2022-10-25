@@ -1,9 +1,7 @@
 package com.study.board.controller;
 
 import com.study.board.entity.Board;
-import com.study.board.entity.Member;
 import com.study.board.service.BoardService;
-import com.study.board.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -22,8 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class BoardController {
   @Autowired
   private BoardService boardService;
-  @Autowired
-  private MemberService memberService;
 
   //생성자 주입 객체 (이 객체를 가져다가 쓴다라고 하면댐)
   @GetMapping("/board/write")
@@ -106,16 +101,5 @@ public class BoardController {
   public String boardloginfrom() {
 
     return "loginPage";
-  }
-  public String boarloginPro(Board board, Model model) throws Exception {
-
-    memberService.login(String.valueOf(board.getId()));
-
-    model.addAttribute("message","글 작성이 완료 되었습니다");
-
-    model.addAttribute("searchUrl","/board/list");
-
-    return "message";
-    //이거는 바로 넘어갈떄가 아니고 어떤 기능을 구현하고 돌아갈떄 붙혀줘야됨
   }
 }

@@ -2,7 +2,6 @@ package com.study.board.controller;
 
 import com.study.board.entity.Board;
 import com.study.board.entity.Member;
-import com.study.board.repository.MemberRepository;
 import com.study.board.service.BoardService;
 import com.study.board.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,5 +109,26 @@ public class BoardController {
 
     return "loginPage";
   }
+  @PostMapping("/board/loginPro")
+  public String boardlogin(Member member,Model model) {
+    int result=memberService.login(member.getUserid(), member.getUserpassword());
 
+    if (result==1) {
+      model.addAttribute("message", "로그인에 성공하셨습니다");
+      model.addAttribute("searchUrl", "/board/list");
+    }
+    else if (result==0) {
+      model.addAttribute("message", "비밀번호가 틀립니다");
+      model.addAttribute("searchUrl", "/board/login");
+    }
+    else if (result==-1) {
+      model.addAttribute("message", "존재하지않는 아이디입니다");
+      model.addAttribute("searchUrl", "/board/login");
+    }
+    else if (result==-2) {
+      model.addAttribute("message", "데이터 베이스의 오류가 발견되었습니다");
+      model.addAttribute("searchUrl", "/board/login");
+    }
+    return "message";
+  }
 }

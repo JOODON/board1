@@ -39,7 +39,6 @@ public class BoardService {
         file.transferTo(saveFile);
 
         boardRepository.save(board);
-
         //이녀석이 자동으로 알아서해줌 레전드다..
     }
     //게시글 페이지
@@ -56,7 +55,6 @@ public class BoardService {
     //특정 게시글 삭제
     public void boardDelete(Integer id){
         boardRepository.deleteById(id);
-
     }
 
 }

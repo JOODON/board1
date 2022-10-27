@@ -1,8 +1,10 @@
 package com.study.board.controller;
 
 import com.study.board.entity.Board;
+import com.study.board.entity.Mbti;
 import com.study.board.entity.Member;
 import com.study.board.service.BoardService;
+import com.study.board.service.MbtiService;
 import com.study.board.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,9 @@ public class BoardController {
   private BoardService boardService;
   @Autowired
   private MemberService memberService;
+
+  @Autowired
+  private MbtiService mbtiService;
 
   //생성자 주입 객체 (이 객체를 가져다가 쓴다라고 하면댐)
   @GetMapping("/board/write")
@@ -129,6 +134,30 @@ public class BoardController {
       model.addAttribute("message", "데이터 베이스의 오류가 발견되었습니다");
       model.addAttribute("searchUrl", "/board/login");
     }
+    return "message";
+  }
+  @GetMapping("/board/mbtilist")
+  public String boardlist(){
+    return "mbtiPage";
+  }
+  @PostMapping("/board/mbtiWritePro")
+  public String boardWritePro(Model model, Mbti mbti,@PathVariable("id") Integer id) throws Exception {
+
+    Mbti mbtiTemp=mbtiService.mbtiView(id);
+
+    mbtiTemp.setId(id);
+
+    mbtiTemp.setText(mbtiTemp.getText());
+
+    mbtiTemp.setValue(mbti.getValue());
+
+    mbtiService.mbtiWrite(mbtiTemp);
+
+    model.addAttribute("list",mbtiService.mbtiView(id));
+
+    model.addAttribute("message", "작성이 완료 되었습니다");
+    model.addAttribute("searchUrl", "/board/list");
+
     return "message";
   }
 }

@@ -136,12 +136,16 @@ public class BoardController {
     }
     return "message";
   }
+
   @GetMapping("/board/mbtilist")
   public String boardlist(){
     return "mbtiPage";
   }
   @PostMapping("/board/mbtiWritePro")
-  public String boardWritePro(Model model, Mbti mbti,@PathVariable("id") Integer id) throws Exception {
+  public String boardWritePro(Model model, Mbti mbti,Integer id,Pageable pageable) throws Exception {
+    Page<Mbti> list = mbtiService.mbtiList(pageable);
+
+    model.addAttribute("list",list);
 
     Mbti mbtiTemp=mbtiService.mbtiView(id);
 
@@ -153,7 +157,7 @@ public class BoardController {
 
     mbtiService.mbtiWrite(mbtiTemp);
 
-    model.addAttribute("list",mbtiService.mbtiView(id));
+    model.addAttribute("mbtidb",mbtiService.mbtiView(id));
 
     model.addAttribute("message", "작성이 완료 되었습니다");
     model.addAttribute("searchUrl", "/board/list");

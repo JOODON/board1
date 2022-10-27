@@ -16,7 +16,7 @@ public class MbtiService {
     public void mbtiWrite(Mbti mbti) throws Exception{
         mbtiRepository.save(mbti);
     }
-    public Page<Mbti> boardList(Pageable pageable){
+    public Page<Mbti> mbtiList(Pageable pageable){
         return mbtiRepository.findAll(pageable);
         //보드라는 리스트에 녀석을 반환해줌!
     }

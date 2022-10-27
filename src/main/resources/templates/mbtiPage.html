@@ -6,6 +6,8 @@
 </head>
 <body>
 <form action="/board/mbtiWritePro" method="post">
+
+    <h1 th:text="${mbtidb.id}">1</h1>
     <h1 th:text="${mbtidb.text}">나는 외향형 이다</h1>
     <input type="radio" value="E" name="value">
     <input type="radio" value="I"name="value">

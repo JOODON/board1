@@ -9,7 +9,8 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Mbti {
+public class Mbtidb {
+    //테이블 이름이랑 똑같이 지워줄것!
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -6,12 +6,13 @@
 </head>
 <body>
 <form action="/board/mbtiWritePro" method="post">
-
-    <h1 th:text="${mbtidb.id}">1</h1>
-    <h1 th:text="${mbtidb.text}">나는 외향형 이다</h1>
-    <input type="radio" value="E" name="value">
-    <input type="radio" value="I"name="value">
-    <input type="submit" value="제출하기">
+   <div th:each="mbtidb:${list}">
+        <h1 th:text="${mbtidb.id}">1</h1>
+        <h1 th:text="${mbtidb.text}">나는 외향형 이다</h1>
+        <input type="checkbox" value="E" name="value">
+        <input type="checkbox" value="I"name="value">
+        <input type="submit" value="제출하기">
+   </div>
 </form>
 </body>
 </html>

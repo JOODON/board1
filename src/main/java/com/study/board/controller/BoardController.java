@@ -1,7 +1,7 @@
 package com.study.board.controller;
 
 import com.study.board.entity.Board;
-import com.study.board.entity.Mbti;
+import com.study.board.entity.Mbtidb;
 import com.study.board.entity.Member;
 import com.study.board.service.BoardService;
 import com.study.board.service.MbtiService;
@@ -137,31 +137,29 @@ public class BoardController {
     return "message";
   }
 
-  @GetMapping("/board/mbtilist")
-  public String boardlist(){
-    return "mbtiPage";
-  }
+
+
   @PostMapping("/board/mbtiWritePro")
-  public String boardWritePro(Model model, Mbti mbti,Integer id,Pageable pageable) throws Exception {
-    Page<Mbti> list = mbtiService.mbtiList(pageable);
+  public String boardWritePro(Model model, Mbtidb mbti) throws Exception {
 
-    model.addAttribute("list",list);
-
-    Mbti mbtiTemp=mbtiService.mbtiView(id);
-
-    mbtiTemp.setId(id);
+    Mbtidb mbtiTemp=mbtiService.mbtiView(mbti.getId());
 
     mbtiTemp.setText(mbtiTemp.getText());
 
-    mbtiTemp.setValue(mbti.getValue());
+    mbtiTemp.setValue(mbtiTemp.getValue());
 
     mbtiService.mbtiWrite(mbtiTemp);
-
-    model.addAttribute("mbtidb",mbtiService.mbtiView(id));
 
     model.addAttribute("message", "작성이 완료 되었습니다");
     model.addAttribute("searchUrl", "/board/list");
 
     return "message";
+  }
+  @GetMapping("/board/mbtilist")
+  public String MbtiList(Model model) {
+
+    model.addAttribute("list",mbtiService.mbtiList());
+
+    return "mbtiPage";
   }
 }

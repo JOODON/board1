@@ -52,9 +52,19 @@ public class BoardController {
   }
 
   @GetMapping("/board/list")
-  public String boardList(Model model,@PageableDefault(page = 0, size = 10 , sort ="id" ,direction =Sort.Direction.DESC) Pageable pageable) {
+  public String boardList(Model model,
+                          @PageableDefault(page = 0, size = 10 , sort ="id" ,direction =Sort.Direction.DESC) Pageable pageable,
+                          String searchKeyWord) {
 
-    Page<Board> list = boardService.boardList(pageable);
+    Page<Board> list=null;
+
+    if(searchKeyWord ==null){
+      list=boardService.boardList(pageable);
+    }
+    else {
+      list=boardService.boardSearchList(searchKeyWord,pageable);
+    }
+
     int nowPage=list.getPageable().getPageNumber()+1;
 
     int stratPage=Math.max(nowPage -4 ,1);

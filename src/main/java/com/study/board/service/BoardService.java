@@ -56,7 +56,7 @@ public class BoardService {
     public void boardDelete(Integer id){
         boardRepository.deleteById(id);
     }
-    public Page<Board> boardSearchList(String serachkeyword,Pageable pageable){
-        return boardRepository.findByTitleContaining(serachkeyword,pageable);
+    public Page<Board> boardSearchList(String searchKeyWord,Pageable pageable){
+        return boardRepository.findByTitleContaining(searchKeyWord,pageable);
     }
 }

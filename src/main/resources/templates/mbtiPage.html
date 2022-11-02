@@ -11,8 +11,24 @@
         <h3 th:text="${mbtidb.text}">3</h3>
         <input type="checkbox" value="E" name="value">
         <input type="checkbox" value="I"name="value">
-        <input type="submit" value="제출하기">
-   </div>
 
+        <button><a class="prev" th:href="@{/mbti/list(page=${pagenum})}">이전</a></button>
+        <button><a class="next" th:href="@{/mbti/list(page=${pagenum})}">다음</a></button>
+   </div>
+    <script>
+        let pbn=document.querySelector(".prev");
+        let nbn=document.querySelector(".next");
+
+        pbn.onclick=function (){
+            [[${pagenum}]]-1;
+            alert("a클릭하셨습니다");
+        }
+
+        nbn.onclick=function (){
+            [[${pagenum}]]+1
+            alert("b클릭하셨습니다");
+        }
+
+    </script>
 </body>
 </html>

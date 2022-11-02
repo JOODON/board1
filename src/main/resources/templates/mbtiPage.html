@@ -12,8 +12,8 @@
         <input type="checkbox" value="E" name="value">
         <input type="checkbox" value="I"name="value">
 
-        <button><a th:href ="@{/mbti/list(page = ${pagenum -1})}" class="prev" >이전</a></button>
-        <button><a th:href ="@{/mbti/list(page = ${pagenum +1})}"class="next" >이전</a></button>
+        <button><a th:href ="@{/mbti/list(page = ${page -1})}" class="prev" >이전</a></button>
+        <button><a th:href ="@{/mbti/list(page = ${page +1})}" class="next" >이전</a></button>
    </div>
 </body>
 </html>

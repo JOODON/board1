@@ -12,23 +12,25 @@
         <input type="checkbox" value="E" name="value">
         <input type="checkbox" value="I"name="value">
 
-        <button><a class="prev" th:href="@{/mbti/list(page=${pagenum})}">이전</a></button>
-        <button><a class="next" th:href="@{/mbti/list(page=${pagenum})}">다음</a></button>
+        <button><a class="prev" th:href ="@{/mbti/list(pagenum=${pagenum-1}">이전</a></button>
+        <button><a class="next" th:href ="@{/mbti/list(pagenum=${pagenum+1}">이전</a></button>
    </div>
-    <script>
-        let pbn=document.querySelector(".prev");
-        let nbn=document.querySelector(".next");
+<!--    <script>-->
+<!--        let pbn=document.querySelector(".prev");-->
+<!--        let nbn=document.querySelector(".next");-->
+<!--        let pagenum=[[${pagenum}]];-->
 
-        pbn.onclick=function (){
-            [[${pagenum}]]-1;
-            alert("a클릭하셨습니다");
-        }
+<!--        pbn.onclick=function (){-->
+<!--            pagenum-=1;-->
+<!--            location.href=`/mbti/list/?page=${pagenum}`;-->
+<!--            alert("a클릭하셨습니다");-->
+<!--        }-->
 
-        nbn.onclick=function (){
-            [[${pagenum}]]+1
-            alert("b클릭하셨습니다");
-        }
-
-    </script>
+<!--        nbn.onclick=function (){-->
+<!--            pagenum+=1;-->
+<!--            location.href=`/mbti/list/?page=${pagenum}`;-->
+<!--            alert("b클릭하셨습니다");-->
+<!--        }-->
+<!--    </script>-->
 </body>
 </html>

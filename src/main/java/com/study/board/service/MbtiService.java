@@ -22,7 +22,4 @@ public class MbtiService {
         return mbtiRepository.findAll();
         //보드라는 리스트에 녀석을 반환해줌!
     }
-    public Mbtidb mbtiView(Integer id) throws Exception{
-        return mbtiRepository.findById(id).get();
-    }
 }

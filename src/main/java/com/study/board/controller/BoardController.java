@@ -148,30 +148,10 @@ public class BoardController {
     }
     return "message";
   }
-
-
-
-  @PostMapping("/board/mbtiWritePro")
-  public String boardWritePro(Model model, Mbtidb mbti) throws Exception {
-
-    Mbtidb mbtiTemp=mbtiService.mbtiView(mbti.getId());
-
-    mbtiTemp.setText(mbtiTemp.getText());
-
-    mbtiTemp.setValue(mbtiTemp.getValue());
-
-    mbtiService.mbtiWrite(mbtiTemp);
-
-    model.addAttribute("message", "작성이 완료 되었습니다");
-    model.addAttribute("searchUrl", "/board/list");
-
-    return "message";
-  }
-  @GetMapping("/board/mbtilist")
-  public String MbtiList(Model model) {
+  @GetMapping("/mbti/list")
+  public String mbtilist(Model model) {
 
     model.addAttribute("list",mbtiService.mbtiList());
-
     return "mbtiPage";
   }
 }

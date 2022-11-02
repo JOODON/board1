@@ -149,9 +149,10 @@ public class BoardController {
     return "message";
   }
   @GetMapping("/mbti/list")
-  public String mbtilist(Model model) {
+  public String mbtilist(Model model,@PageableDefault(page=0,size=1,sort ="id",direction=Sort.Direction.DESC) Pageable pageable) {
 
-    model.addAttribute("list",mbtiService.mbtiList());
+    model.addAttribute("list",mbtiService.mbtiList(pageable));
+
     return "mbtiPage";
   }
 }

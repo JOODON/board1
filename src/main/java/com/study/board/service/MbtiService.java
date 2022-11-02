@@ -18,8 +18,8 @@ public class MbtiService {
     public void mbtiWrite(Mbtidb mbti) throws Exception{
         mbtiRepository.save(mbti);
     }
-    public List<Mbtidb> mbtiList(){
-        return mbtiRepository.findAll();
+    public Page<Mbtidb> mbtiList(Pageable pageable){
+        return mbtiRepository.findAll(pageable);
         //보드라는 리스트에 녀석을 반환해줌!
     }
 }

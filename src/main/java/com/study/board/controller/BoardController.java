@@ -53,7 +53,7 @@ public class BoardController {
 
   @GetMapping("/board/list")
   public String boardList(Model model,
-                          @PageableDefault(page = 0, size = 10 , sort ="id" ,direction =Sort.Direction.DESC) Pageable pageable,
+                          @PageableDefault(page = 0, size = 1 , sort ="id" ,direction =Sort.Direction.DESC) Pageable pageable,
                           String searchKeyWord) {
 
     Page<Board> list=null;
@@ -66,11 +66,11 @@ public class BoardController {
     }
 
     int nowPage=list.getPageable().getPageNumber()+1;
-
+    //현재 페이지를 받아옴
     int stratPage=Math.max(nowPage -4 ,1);
-
+    //시작 페이지 가장 뒤가 9이면 그 앞이 1
     int endPage=Math.min(nowPage +5,list.getTotalPages());
-
+    //마지막 페이지가 5 가장 마지막일경우에는 TotalPage로 설정
     model.addAttribute("list",list);
     model.addAttribute("nowPage",nowPage);
     model.addAttribute("startPage",stratPage);
@@ -150,9 +150,11 @@ public class BoardController {
   }
   @GetMapping("/mbti/list")
   public String mbtilist(Model model,@PageableDefault(page=0,size=1,sort ="id",direction=Sort.Direction.DESC) Pageable pageable) {
-
+    int pagenumber=pageable.getPageNumber();
     model.addAttribute("list",mbtiService.mbtiList(pageable));
+    model.addAttribute("pagenum",pagenumber);
 
+    //현재 페이지 넘버를 넘겨줌
     return "mbtiPage";
   }
 }

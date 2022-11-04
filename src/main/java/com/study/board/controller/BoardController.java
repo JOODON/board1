@@ -156,4 +156,15 @@ public class BoardController {
     //현재 페이지 넘버를 넘겨줌
     return "mbtiPage";
   }
+  @PostMapping("/mbti/update/{id}")
+  public String boardUpdate(@PathVariable("id") Integer id,Mbtidb mbtidb) throws Exception {
+
+    Mbtidb mbtiTemp=mbtiService.mbtiVie(id);
+
+    mbtiTemp.setValue(mbtidb.getValue());
+
+    mbtiService.mbtiWrite(mbtiTemp);
+
+    return "redirect:/mbti/list";
+  }
 }

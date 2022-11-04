@@ -9,13 +9,10 @@
     <div th:each="mbtidb:${list}">
         <h1 th:text="${mbtidb.id}">1</h1>
         <h3 th:text="${mbtidb.text}">3</h3>
-
-        <input type="checkbox" value="E" name="value">
-        <input type="checkbox" value="I"name="value">
-
-        <button><a th:if="${mbtidb.id >= 2} "th:href ="@{/mbti/list(page = ${mbtidb.id-2})}">이전</a></button>
-        <button><a th:href ="@{/mbti/list(page = ${mbtidb.id})}" >다음</a></button>
-
+        <form th:action="@{/mbti/update/{id}(id=${mbtidb.id})}">
+            <button type="submit" name="value" value="E"><a th:if="${mbtidb.id >= 2} "th:href ="@{/mbti/list(page = ${mbtidb.id-2})}">O</a></button>
+            <button type="submit" name="value" value="I"><a th:href ="@{/mbti/list(page = ${mbtidb.id})}" >X</a></button>
+        </form>
    </div>
 </body>
 </html>
